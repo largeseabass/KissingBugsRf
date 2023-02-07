@@ -11,7 +11,7 @@ This projects has three aims:
 * Application: Spread the knowledge of infectious disease to the public and generate impacts.
 
 
-0. Install QGIS, Python and Jupyter-lab
+**Prerequisites: Install QGIS, Python and Jupyter-lab**
 
 
 1.Set up QGIS python console for all the python scripts using QGIS.
@@ -26,7 +26,7 @@ This projects has three aims:
     print(sys.path)
     ```
     
-Using the results to fill-in 'env = {}' and 'paths = {}'.
+* Using the results to fill-in 'env = {}' and 'paths = {}'.
 
 * In your system's folder, check if the paths for the following os.environ settings are correct:
 ```
@@ -52,4 +52,7 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 
 * Download Climate and Land Cover data from [AdaptWest](https://adaptwest.databasin.org) and [Guangzhao Chen et al.](https://zenodo.org/record/4584775#.Y-KIMy9w1QL). Note their projection coordinates from inspecting their rasters in QGIS.
 
-* 
+**Each climate and land cover variable needs to be stored in a separate raster file with EPSG:4326 Projection.**
+
+* Download **change_projection.py**, which has the codes to change the projection of rasters from AdaptWest and Guangzhao Chen et al. to **EPSG:4326**.
+* Setup QGIS python cosole and change the file paths in **change_projection.py** for each raster.
