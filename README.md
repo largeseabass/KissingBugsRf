@@ -14,7 +14,7 @@ This projects has three aims:
 **Prerequisites: Install QGIS, Python and Jupyter-lab**
 
 
-1.Set up QGIS python console for all the python scripts using QGIS.
+## 1.Set up QGIS python console for all the python scripts using QGIS.
 
 * Open QGIS application and go to Plugins-PythonConsole. In the command line, type:
 
@@ -48,7 +48,7 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 **Trouble-shooting: Probelms with QGIS can often be solved by re-installing the newest version of QGIS.**
 
 
-2. Data Preparation
+## 2. Data Preparation
 
 * Download Climate and Land Cover data from [AdaptWest](https://adaptwest.databasin.org) and [Guangzhao Chen et al.](https://zenodo.org/record/4584775#.Y-KIMy9w1QL). Note their projection coordinates from inspecting their rasters in QGIS.
 
@@ -56,3 +56,8 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 
 * Download **change_projection.py**, which has the codes to change the projection of rasters from AdaptWest and Guangzhao Chen et al. to **EPSG:4326**.
 * Setup QGIS python cosole and change the file paths in **change_projection.py** for each raster.
+
+**Vectorize these rasters to vectors with cell size 5 km * 5 km with grids**
+
+* The Grids can be downloaded from DesignSafe (will publish that later). These grids are large and cannot be stored at GitHub Repository.
+* Download **zonal_stas.py**
