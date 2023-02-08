@@ -110,7 +110,7 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 
 The following scripts are written in .ipynb.
 
-
+* Download rf_training.ipynb.
 * Make sure all the packages imported are installed.
 
 
@@ -146,3 +146,12 @@ End of iterations.
 * **Average shapely value graph** is plotted and stored under shap_dir.
 * In each iteration, the prediction of suitable habitat distribution over the whole North America is made by feeding all the valid cells (with non-NA value for all variables) to the trained random forest model. The **average prediction of suitable habitat distribution over the whole north america** is made by averaging the prediction from all iterations, and the corresponding .csv file is stored under pre_dir.
 
+## 4. Make Future Projection Prediction with Trained Random Forest Model
+
+* Download prediction.ipynb.
+* Make sure all the future projected rasters have been proceeded with the method in Section (2).
+* Make sure all the storage paths are the correct address.
+* Make sure the save_tree_dir is correct.
+* Modify the ```scenario = 'SSP5_RCP85',scenario2 = 'ssp585'``` to the RCP and SSP you want to calculate.
+* Make sure num_runs is the same as you train the model.
+* The prediction results for each of the 30 years period are stored under corresponding pre_dir_2011_2040, pre_dir_2041_2070, pre_dir_2071_2100 paths.
