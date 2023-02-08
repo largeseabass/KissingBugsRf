@@ -11,8 +11,17 @@ This projects has three aims:
 * Application: Spread the knowledge of infectious disease to the public and generate impacts.
 
 
-**Prerequisites: Install QGIS, Python and Jupyter-lab**
+## Design Idea
 
+
+* Use a grid with $0.05˚\times0.05˚$ cells to vectorize all the variables in raster formats and store the average value for each cell in the attribute table. 
+* Use the buffer method to generate psudo absence cells, to match up with the presence cells.
+* Feed the attribute table (getting rid of the latitutes and longitudes, of course) into Random Forest for training and making prediction.
+
+
+## Prerequisites
+
+Install QGIS, Python and Jupyter-lab
 
 ## 1.Set up QGIS python console for all the python scripts using QGIS.
 
@@ -61,3 +70,7 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 
 * The Grids can be downloaded from DesignSafe (will publish that later). These grids are large and cannot be stored at GitHub Repository.
 * Download **zonal_stas.py**
+* The **zonal_stas.py** vectorizes each raster with the Grid by calculating an average value for each grid cell and store the avearge value in the Grid Vector's attribute table.
+
+
+**Get the present cells**
