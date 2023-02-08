@@ -124,13 +124,25 @@ For each species with specific buffer:
 
 * The **presence cells** are those raw_df['count']=1 and have no NA values in every column, and are stored as **species_data**. Give them a new column 'presence' and make the values 1.
 * The **cells cover the whole North Americas** are the cells that have no NA values in every column, and are stored as **final_testing_group**.
-* **The pool of psuedo absence cells** are the cells which has no value in the 'buffer' column from **final_testing_group**, and they are stored as **buffer_background**.
+* **The pool of psuedo absence cells** are the cells which has no value in the 'buffer' column from **final_testing_group**, and they are stored as **buffer_background**. Give them a new column 'presence' and make the values 0.
+
+
+
+We run the following steps for num_runs iterations:
+* Randomly select the same number of **pseudo absence cells** as the presence cells from **buffer_background**.
+* Combine the **pseudo absence cells** and **presence cells**, drop the useless columns ('id', latitutes and longditudes). The 'presence' column is the y_list, and the rest is the X_list.
+* Train-test split the X_list and y_list. Train the random forest classifier with the training set.
+* Compute the 5-fold cross-validation TSS score, AUC and ROC with the testing set to evaluate the model.
+* Compute gini importance, boruta and shapely values to evaluate the importance of each variable.
+* With the trained RF, compute the prediction for the whole North America with **final_testing_group**.
+* The **random forest** in each interation is stored under save_tree_dir.
+
+End of iterations.
 
 * Create a dictionary for **cross-validation TSS score, x_label, x_list (all the variables, before training-testing split), y_list (all the corresponding results, before training-testing split), x_train_list (all the variables that has been used in the training), gini importance scores, AUC, ROC, shapely values, boruta rank** and save it under dictionary_path.
-* *ROC graph** is plotted and stored under ROC_dir.
-* **gini importance graph** is plotted and stored under gini_dir.
-* **boruta importance graph** is plotted and stored under boruta_dir.
-* **shapely value graph** is plotted and stored under shap_dir.
-* The **random forests** in all interations are stored under save_tree_dir.
+* **Average ROC graph** is plotted and stored under ROC_dir.
+* **Average gini importance graph** is plotted and stored under gini_dir.
+* **Average boruta importance graph** is plotted and stored under boruta_dir.
+* **Average shapely value graph** is plotted and stored under shap_dir.
 * In each iteration, the prediction of suitable habitat distribution over the whole North America is made by feeding all the valid cells (with non-NA value for all variables) to the trained random forest model. The **average prediction of suitable habitat distribution over the whole north america** is made by averaging the prediction from all iterations, and the corresponding .csv file is stored under pre_dir.
 
