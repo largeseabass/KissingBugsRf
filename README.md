@@ -103,3 +103,34 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 
 * Download **presence_points_buffer.py**.
 * Follow the instruction noted in the scripts to get the corresponding .csv files exported from the grid vector's attribute table. The .csv files have 1 stored in column 'count' and customized buffer name, for cells containing the presence points and buffer.
+
+
+## 3. Random Forest Model Training
+
+
+The following scripts are written in .ipynb.
+
+
+* Make sure all the packages imported are installed.
+
+
+
+**You should edit the following sessions in the script to make sure you only calculate and save the items you need.**
+
+For each species with specific buffer:
+
+* Load the count.csv (**presence_path**, presence cells), buffer.csv (**buffer_path**, buffer cells), zonal_stats.csv (**zonal_path**, the variables for each cell).
+* Merge these dataframes and we have our raw dataframe **raw_df**, with keys (column titles): variable names (climate and land cover), cell information (id, the longitude and latitute of four vertexs), 'count', buffer name, 'Unnamed: 0' (an useless column which is created automatically when generating new csv).
+
+* The **presence cells** are those raw_df['count']=1 and have no NA values in every column, and are stored as **species_data**. Give them a new column 'presence' and make the values 1.
+* The **cells cover the whole North Americas** are the cells that have no NA values in every column, and are stored as **final_testing_group**.
+* **The pool of psuedo absence cells** are the cells which has no value in the 'buffer' column from **final_testing_group**, and they are stored as **buffer_background**.
+
+* Create a dictionary for **cross-validation TSS score, x_label, x_list (all the variables, before training-testing split), y_list (all the corresponding results, before training-testing split), x_train_list (all the variables that has been used in the training), gini importance scores, AUC, ROC, shapely values, boruta rank** and save it under dictionary_path.
+* *ROC graph** is plotted and stored under ROC_dir.
+* **gini importance graph** is plotted and stored under gini_dir.
+* **boruta importance graph** is plotted and stored under boruta_dir.
+* **shapely value graph** is plotted and stored under shap_dir.
+* The **random forests** in all interations are stored under save_tree_dir.
+* In each iteration, the prediction of suitable habitat distribution over the whole North America is made by feeding all the valid cells (with non-NA value for all variables) to the trained random forest model. The **average prediction of suitable habitat distribution over the whole north america** is made by averaging the prediction from all iterations, and the corresponding .csv file is stored under pre_dir.
+
