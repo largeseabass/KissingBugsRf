@@ -11,12 +11,38 @@ This projects has three aims:
 * Application: Spread the knowledge of infectious disease to the public and generate impacts.
 
 
-## Design Idea
+## Design
 
-
-* Use a grid with $0.05˚\times0.05˚$ cells to vectorize all the variables in raster formats and store the average value for each cell in the attribute table. 
+### Overall Structure
+* Use a grid with $0.05˚\times0.05˚$ cells to vectorize all the variables in raster formats and store the average value for each cell in the attribute table, with zonal statistics function of pyQGIS.
 * Use the buffer method to generate psudo absence cells, to match up with the presence cells.
 * Feed the attribute table (getting rid of the latitutes and longitudes, of course) into Random Forest for training and making prediction.
+
+### Buffer Method for selecting pseudo absence cells
+
+
+**Presence Cells**
+
+
+Use the select-by-location function of pyQGIS to get the presence cells on the grid from presence points.
+
+
+**Buffer**
+
+
+Use the buffer and select-by-location function of pyQGIS to get the buffer cells on the grid from presence points.
+
+
+**Get psuedo absence cells**
+
+
+
+When preparing the training set, randomly select cells from the cells that are not marked as touched by the buffer, and mark these cells as psuedo absence cells. The number of psuedo absence cells is equal to the number of presence cells.
+
+
+Details about calculation is explained in the .py scripts.
+
+
 
 
 ## Prerequisites
@@ -73,4 +99,7 @@ QgsApplication.setPrefixPath("/Applications/QGIS.app/Contents/MacOS",True)
 * The **zonal_stas.py** vectorizes each raster with the Grid by calculating an average value for each grid cell and store the avearge value in the Grid Vector's attribute table.
 
 
-**Get the present cells**
+**Get the present cells and buffers**
+
+* Download **presence_points_buffer.py**.
+* Follow the instruction noted in the scripts to get the corresponding .csv files exported from the grid vector's attribute table. The .csv files have 1 stored in column 'count' and customized buffer name, for cells containing the presence points and buffer.
