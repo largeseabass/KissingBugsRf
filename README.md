@@ -146,7 +146,8 @@ End of iterations.
 * **Average shapely value graph** is plotted and stored under shap_dir.
 * In each iteration, the prediction of suitable habitat distribution over the whole North America is made by feeding all the valid cells (with non-NA value for all variables) to the trained random forest model. The **average prediction of suitable habitat distribution over the whole north america** is made by averaging the prediction from all iterations, and the corresponding .csv file is stored under pre_dir.
 
-## 4. Make Future Projection Prediction with Trained Random Forest Model
+## 4. Future Projection Prediction with Trained Random Forest Model
+
 
 * Download prediction.ipynb.
 * Make sure all the future projected rasters have been proceeded with the method in Section (2).
