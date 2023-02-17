@@ -156,3 +156,10 @@ End of iterations.
 * Modify the ```scenario = 'SSP5_RCP85',scenario2 = 'ssp585'``` to the RCP and SSP you want to calculate.
 * Make sure num_runs is the same as you train the model.
 * The prediction results for each of the 30 years period are stored under corresponding pre_dir_2011_2040, pre_dir_2041_2070, pre_dir_2071_2100 paths.
+
+
+## 5. Plotting the Results
+
+* Download final_paper_plot.ipynb.
+* Modify the input paths.
+
